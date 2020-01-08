@@ -1,0 +1,27 @@
+﻿<Window x:Class="SfSchedule_MVVM_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ie="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:SfSchedule_MVVM_WPF"
+        xmlns:ScheduleCommand="clr-namespace:SfSchedule_MVVM_WPF.Commands"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        
+        Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
+    <Grid>
+        <Grid.Resources>
+            <local:ScheduleViewModel x:Key="VM"/>
+
+        </Grid.Resources>
+        <syncfusion:SfSchedule DataContext="{StaticResource VM}" ScheduleType="Week" TimeInterval="OneHour" 
+                               x:Name="schedule"  Appointments="{Binding Collection}"
+                               ScheduleCommand:AppointmentEditorOpeningCommandWithEventArgs.Command="{Binding EditorOpeningCommand}"
+                               ScheduleCommand:AppointmentEditorClosingCommandWithEventArgs.Command="{Binding EditorClosedCommand}"
+                               ScheduleCommand:ContextMenuOpeningCommandWithEventArgs.Command="{Binding ContextMenuOpeningCommand}"
+                               ScheduleCommand:ContextMenuClosingCommandWithEventArgs.Command="{Binding ContextMenuClosingCommand}"
+                               ScheduleCommand:VisibleDatesChangingCommandWithEventArgs.Command="{Binding VisibleDateChangingCommand}">
+          
+        </syncfusion:SfSchedule>
+        
+    </Grid>
+</Window>
